@@ -1,0 +1,29 @@
+{
+  "name": "seact",
+  "version": "0.0.1",
+  "description": "sketch layer renderer",
+  "main": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "author": "nichenqin",
+  "license": "MIT",
+  "scripts": {
+    "bundle": "babel src --out-dir dist",
+    "watch": "babel src --watch --out-dir dist",
+    "prepublish": "yarn run bundle"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-lodash": "^3.3.2",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
+  }
+}

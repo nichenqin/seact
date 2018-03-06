@@ -1,0 +1,21 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "from-webview",
+      "identifier": "seact-example-from-webview",
+      "script": "./from-webview.js"
+    },
+    {
+      "name": "upload-image",
+      "handler": "uploadImage",
+      "identifier": "seact-example-upload-image",
+      "script": "./upload-image.js"
+    }
+  ],
+  "menu": {
+    "title": "seact-example",
+    "items": ["seact-example-from-webview", "seact-example-upload-image"]
+  }
+}
