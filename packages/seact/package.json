@@ -1,6 +1,6 @@
 {
   "name": "seact",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "sketch layer renderer",
   "main": "dist/index",
   "files": [
@@ -11,7 +11,7 @@
   "scripts": {
     "bundle": "babel src --out-dir dist",
     "watch": "babel src --watch --out-dir dist",
-    "prepublish": "yarn run bundle"
+    "prepare": "yarn run bundle"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
