@@ -4,7 +4,7 @@ import Button from './components/Button'
 import Artboard from './components/Artboard'
 import SymbolMaster from './components/SymbolMaster'
 
-export default function(context) {
+export default function (context) {
   const webUI = new WebUI(context, require('../resources/webview.html'), {
     identifier: 'unique.id', // to reuse the UI
     x: 0,
@@ -17,19 +17,22 @@ export default function(context) {
     shouldKeepAround: true,
     frameLoadDelegate: {
       // https://developer.apple.com/reference/webkit/webframeloaddelegate?language=objc
-      'webView:didFinishLoadForFrame:'(webView, webFrame) {
+      'webView:didFinishLoadForFrame:': function (webView, webFrame) {
         context.document.showMessage('UI loaded!')
       },
     },
     handlers: {
       nativeLog(s) {
         try {
-          // const artboard1 = Seact.render(<Artboard name="artboard1" />)
-          const instance = Seact.render(
-            <symbolinstance
+          const instance = Seact.render(<symbolinstance
               from={{ url: '/Users/nichenqin/Desktop/button.sketch', path: 'button/normal' }}
-            />,
-          )
+              frame={{
+                width: 300,
+                height: 200,
+                x: 20,
+                y: 500,
+              }}
+            />)
         } catch (error) {
           console.log(error)
         }

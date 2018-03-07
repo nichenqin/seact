@@ -85,5 +85,5 @@ export function createSymbolInstanceByPath(url, path) {
 
 export function getInstanceByPath(url, path) {
   const instance = instanceLibrary[path] || createSymbolInstanceByPath(url, path)
-  return sketch.fromNative(instance)
+  return sketch.fromNative(instance.copy())
 }
