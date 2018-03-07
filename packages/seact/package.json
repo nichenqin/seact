@@ -1,9 +1,11 @@
 {
   "name": "seact",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "sketch layer renderer",
   "main": "dist/index",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "url": "https://github.com/nichenqin/seact"
   },
