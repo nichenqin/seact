@@ -1,7 +1,7 @@
 import sketch from 'sketch/dom' // eslint-disable-line
 import Settings from 'sketch/settings' // eslint-disable-line
 import _ from 'lodash'
-import { setLayerSettingForKey, layerSettingForKey } from './utils/data'
+import { setLayerSettingForKey } from './utils/data'
 
 const { Flow } = sketch
 
@@ -100,7 +100,15 @@ const mapPropsStrategy = {
       Settings.setLayerSettingForKey(layer, LAYER_KEY, data)
     } else setLayerSettingForKey(layer, LAYER_KEY, data)
   },
-  overrides() {},
+  overrides(instance, overrides) {
+    if (instance.type === String(sketch.Types.SymbolInstance)) {
+      const values = Array.isArray(overrides) ? overrides : Object.values(overrides)
+      instance.overrides.forEach((override, index) => {
+        const value = values[index]
+        instance.setOverrideValue(override, value)
+      })
+    }
+  },
 }
 
 export function mapProps(layer, props) {

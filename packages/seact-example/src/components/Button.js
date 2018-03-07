@@ -27,7 +27,7 @@ export default class Button extends Seact.Component {
           height: 100,
         }}
       >
-        <symbolinstance from={{ url, path }} />
+        <symbolinstance from={{ url, path }} overrides={{ text }} />
       </group>
     )
   }
