@@ -1,7 +1,11 @@
 import sketch from 'sketch/dom' // eslint-disable-line
+import Settings from 'sketch/settings' // eslint-disable-line
 import _ from 'lodash'
+import { setLayerSettingForKey, layerSettingForKey } from './utils/data'
 
 const { Flow } = sketch
+
+export const LAYER_KEY = '@@seact-data'
 
 const commonProps = {
   id: true,
@@ -91,7 +95,12 @@ const mapPropsStrategy = {
       layer.systemFontSize = Number(fontSize)
     }
   },
-  data() {},
+  data(layer, data) {
+    if (typeof Settings.setLayerSettingForKey === 'function') {
+      Settings.setLayerSettingForKey(layer, LAYER_KEY, data)
+    } else setLayerSettingForKey(layer, LAYER_KEY, data)
+  },
+  overrides() {},
 }
 
 export function mapProps(layer, props) {

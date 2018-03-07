@@ -24,15 +24,16 @@ export default function (context) {
     handlers: {
       nativeLog(s) {
         try {
-          const instance = Seact.render(<symbolinstance
-              from={{ url: '/Users/nichenqin/Desktop/button.sketch', path: 'button/normal' }}
-              frame={{
-                width: 300,
-                height: 200,
-                x: 20,
-                y: 500,
-              }}
-            />)
+          // const instance = Seact.render(<symbolinstance
+          //     from={{ url: '/Users/nichenqin/Desktop/button.sketch', path: 'button/normal' }}
+          //     frame={{
+          //       width: 300,
+          //       height: 200,
+          //       x: 20,
+          //       y: 500,
+          //     }}
+          //   />)
+          Seact.render(<Button />)
         } catch (error) {
           console.log(error)
         }

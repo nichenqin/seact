@@ -10,6 +10,7 @@
   "globals": {
     "MSForeignSymbol": true,
     "MSUserAssetLibrary": true,
-    "NSURL": true
+    "NSURL": true,
+    "__command": true
   }
 }

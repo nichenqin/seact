@@ -1,5 +1,4 @@
 import Seact from 'seact'
-import { Style, Text } from 'sketch/dom'
 
 export default class Button extends Seact.Component {
   static get defaultProps() {
@@ -7,19 +6,28 @@ export default class Button extends Seact.Component {
       name: 'button',
       text: 'Hello World',
       flowTarget: null,
+      url: '/Users/nichenqin/Desktop/button.sketch',
+      path: 'button/normal',
     }
   }
 
   render() {
-    const { name, text, flowTarget } = this.props
+    const {
+      name, text, flowTarget, url, path,
+    } = this.props
     return (
       <group
+        data={{ text }}
         flow={{ target: flowTarget }}
         name={name}
-        frame={{ x: 0, y: 0, width: 300, height: 100 }}
+        frame={{
+          x: 0,
+          y: 0,
+          width: 300,
+          height: 100,
+        }}
       >
-        <text text={text} systemFontSize={30} />
-        <shape style={{ fills: ['#c0ffee'] }} />
+        <symbolinstance from={{ url, path }} />
       </group>
     )
   }
