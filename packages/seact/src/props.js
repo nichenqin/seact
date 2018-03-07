@@ -68,7 +68,7 @@ const specialProps = {
   },
 }
 
-export function generateConfig(type, props, parentLayer) {
+export function generateConfig(type, props) {
   const config = {}
   const availables = availableProps[type]
 
@@ -81,10 +81,6 @@ export function generateConfig(type, props, parentLayer) {
       config[propName] = propValue
     }
   })
-
-  if (parentLayer) {
-    config.parent = parentLayer
-  }
 
   return config
 }

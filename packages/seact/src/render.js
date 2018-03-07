@@ -6,9 +6,9 @@ import { getInstanceByPath } from './utils/symols'
 const document = sketch.getSelectedDocument()
 
 const mountStrategy = {
-  artboard(vlayer, parentLayer) {
+  artboard(vlayer) {
     const { Artboard } = sketch
-    const config = generateConfig('artboard', vlayer.props, parentLayer)
+    const config = generateConfig('artboard', vlayer.props)
     const { from } = config
     if (from && from.type === String(sketch.Types.SymbolMaster)) {
       return from.toArtboard()
