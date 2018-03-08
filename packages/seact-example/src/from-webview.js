@@ -35,7 +35,7 @@ export default function (context) {
           //   />)
           Seact.render(<Button />)
         } catch (error) {
-          console.log(error)
+          console.log(error.reason())
         }
       },
       upload(file) {

@@ -14,8 +14,8 @@ export function getSymbolsFromLibrary(url) {
       throw new Error('url required')
     }
 
-    url = NSURL.fileURLWithPath(url)
-    const library = MSUserAssetLibrary.alloc().initWithDocumentAtURL(url)
+    const uikit = NSURL.fileURLWithPath(url)
+    const library = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit)
 
     if (!library) {
       throw new Error('asset library not found')
