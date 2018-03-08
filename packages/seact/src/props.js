@@ -102,11 +102,22 @@ const mapPropsStrategy = {
   },
   overrides(instance, overrides) {
     if (instance.type === String(sketch.Types.SymbolInstance)) {
-      const values = Array.isArray(overrides) ? overrides : Object.values(overrides)
-      instance.overrides.forEach((override, index) => {
-        const value = values[index]
-        instance.setOverrideValue(override, value)
-      })
+      if (Array.isArray(overrides)) {
+        instance.overrides.forEach((override, index) => {
+          const value = overrides[index]
+          if (value !== undefined) {
+            override.value = value
+          }
+        })
+      } else if (typeof overrides === 'object' && overrides !== null) {
+        instance.overrides.forEach((override) => {
+          const name = String(override.sketchObject.overridePoint().layerName())
+          const value = overrides[name]
+          if (value !== undefined) {
+            override.value = value
+          }
+        })
+      }
     }
   },
 }
