@@ -27,6 +27,7 @@ export default class Button extends Seact.Component {
           height: 100,
         }}
       >
+        {Array.from(new Array(3), () => <text text="hello world" />)}
         <symbolinstance from={{ url, path }} overrides={{ text }} />
       </group>
     )

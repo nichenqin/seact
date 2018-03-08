@@ -83,7 +83,9 @@ function mountChildren(childrenOrVnode, parentLayer) {
   if (Array.isArray(children)) {
     children.forEach((childVlayer) => {
       const typeOfChild = typeof childVlayer
-      if (typeOfChild === 'object') {
+      if (Array.isArray(childVlayer)) {
+        childVlayer.props = mountChildren(childVlayer, parentLayer)
+      } else if (typeOfChild === 'object') {
         const typeOfChildType = typeof childVlayer.type
         if (typeOfChildType === 'function') {
           mountComponent(childVlayer, parentLayer)
