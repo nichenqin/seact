@@ -146,5 +146,9 @@ function mount(vlayer, parentLayer) {
 }
 
 export function render(vlayer, parentLayer = document.selectedPage) {
-  return mount(vlayer, parentLayer)
+  parentLayer.layers = []
+
+  const layer = mount(vlayer, parentLayer)
+
+  return layer
 }
