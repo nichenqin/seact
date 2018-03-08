@@ -1,7 +1,7 @@
 import sketch from 'sketch/dom' // eslint-disable-line
 import { mapProps, generateConfig } from './props'
 import { mapStyles } from './styles'
-import { getInstanceByPath } from './utils/symols'
+import { getInstanceByPath } from './utils/symbols'
 
 const document = sketch.getSelectedDocument()
 
