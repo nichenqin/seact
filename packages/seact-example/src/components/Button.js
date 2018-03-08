@@ -21,8 +21,6 @@ export default class Button extends Seact.Component {
         flow={{ target: flowTarget }}
         name={name}
         frame={{
-          x: 0,
-          y: 0,
           width: 300,
           height: 100,
         }}

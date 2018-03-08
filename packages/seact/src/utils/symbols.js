@@ -2,14 +2,14 @@ import sketch from 'sketch/dom' // eslint-disable-line
 
 const document = sketch.getSelectedDocument()
 
-let allSymbols = null
-let assetLibrary = null
+const allSymbols = {}
+const assetLibrary = {}
 const symbolLibrary = {}
 const instanceLibrary = {}
 const masterLibrary = {}
 
 export function getSymbolsFromLibrary(url) {
-  if (!assetLibrary) {
+  if (!assetLibrary[url]) {
     if (!url) {
       throw new Error('url required')
     }
@@ -22,16 +22,16 @@ export function getSymbolsFromLibrary(url) {
     }
 
     library.loadSynchronously()
-    assetLibrary = library
+    assetLibrary[url] = library
   }
 
-  const symbols = assetLibrary.document().allSymbols()
-  allSymbols = symbols
+  const symbols = assetLibrary[url].document().allSymbols()
+  allSymbols[url] = symbols
   return symbols
 }
 
 export function getSymboFromLibrarylByPath(url, path) {
-  const symbols = allSymbols || getSymbolsFromLibrary(url)
+  const symbols = allSymbols[url] || getSymbolsFromLibrary(url)
   if (!symbols.count()) {
     throw new Error('Tried to open library but no symbol found inside the file')
   }
@@ -47,7 +47,7 @@ export function getSymboFromLibrarylByPath(url, path) {
   }
 
   if (symbol) {
-    symbolLibrary[path] = symbol
+    symbolLibrary[url + path] = symbol
   }
   return symbol
 }
@@ -57,33 +57,33 @@ export function createSymbolMasterByPath(url, path) {
     throw new Error('path required')
   }
 
-  const symbol = symbolLibrary[path] || getSymboFromLibrarylByPath(url, path)
+  const symbol = symbolLibrary[url + path] || getSymboFromLibrarylByPath(url, path)
   if (!symbol) {
     throw new Error(`symbol not found in path: ${path}`)
   }
 
-  const foreignSymbol = MSForeignSymbol.foreignSymbolWithMaster_inLibrary(symbol, assetLibrary)
+  const foreignSymbol = MSForeignSymbol.foreignSymbolWithMaster_inLibrary(symbol, assetLibrary[url])
   document.sketchObject.documentData().addForeignSymbol(foreignSymbol)
 
   const symbolMaster = foreignSymbol.symbolMaster()
-  masterLibrary[path] = symbolMaster
+  masterLibrary[url + path] = symbolMaster
 
   return symbolMaster
 }
 
 export function createSymbolInstanceByPath(url, path) {
-  const symbolMaster = masterLibrary[path] || createSymbolMasterByPath(url, path)
+  const symbolMaster = masterLibrary[url + path] || createSymbolMasterByPath(url, path)
 
   const instance = symbolMaster.newSymbolInstance()
 
   if (instance) {
-    instanceLibrary[path] = instance
+    instanceLibrary[url + path] = instance
   }
 
   return instance
 }
 
 export function getInstanceByPath(url, path) {
-  const instance = instanceLibrary[path] || createSymbolInstanceByPath(url, path)
+  const instance = instanceLibrary[url + path] || createSymbolInstanceByPath(url, path)
   return sketch.fromNative(instance.copy())
 }
