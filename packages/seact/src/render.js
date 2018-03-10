@@ -114,7 +114,7 @@ function mountLayer(vlayer) {
 }
 
 function mount(vlayer, parentLayer) {
-  const { type, props, styles } = vlayer
+  const { type, props, style } = vlayer
   const typeOfType = typeof type
 
   let layer
@@ -138,7 +138,7 @@ function mount(vlayer, parentLayer) {
   }
 
   mapProps(layer, props)
-  mapStyles(layer, styles)
+  mapStyles(layer, style)
 
   if (props.adjustToFit && typeof layer.adjustToFit === 'function') {
     layer.adjustToFit()

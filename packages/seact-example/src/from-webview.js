@@ -33,9 +33,13 @@ export default function (context) {
           //       y: 500,
           //     }}
           //   />)
-          Seact.render(<Button />)
+          Seact.render(<group
+              name="nichenqin"
+              frame={{ width: 300 }}
+              style={{ backgroundColor: '#e4393c' }}
+            />)
         } catch (error) {
-          console.log(error.reason())
+          console.log(error)
         }
       },
       upload(file) {

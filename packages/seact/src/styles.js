@@ -12,11 +12,21 @@ const mapStylesStrategy = {
     const rect = new Rectangle(x, y, width, height)
     layer.frame = rect
   },
-  backgroundColor(layer, color) {},
+  backgroundColor(layer, color) {
+    color = sketch.Style.colorFromString(color)
+    const style = MSStyle.alloc().init()
+    const fill = style.addStylePartOfType(0)
+    fill.color = color
+
+    let shape = MSRectangleShape.alloc().initWithFrame(layer.frame.asCGRect())
+    shape = MSShapeGroup.shapeWithPath(shape)
+    layer.sketchObject.addLayer(shape)
+    shape.setStyle(style)
+  },
 }
 
-export function mapStyles(layer, styles) {
-  Object.entries(styles).forEach(([styleName, styleValue]) => {
+export function mapStyles(layer, style) {
+  Object.entries(style).forEach(([styleName, styleValue]) => {
     if (typeof mapStylesStrategy[styleName] === 'function') {
       mapStylesStrategy[styleName](layer, styleValue)
     }

@@ -6,6 +6,7 @@
     }
   },
   "rules": {
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "import/prefer-default-export": 0
   }
 }

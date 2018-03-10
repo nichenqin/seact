@@ -11,6 +11,9 @@
     "MSForeignSymbol": true,
     "MSUserAssetLibrary": true,
     "NSURL": true,
+    "MSStyle": true,
+    "MSRectangleShape": true,
+    "MSShapeGroup": true,
     "__command": true
   }
 }
