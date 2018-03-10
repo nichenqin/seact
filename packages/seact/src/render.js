@@ -137,12 +137,12 @@ function mount(vlayer, parentLayer) {
     props.children = mountChildren(children, layer)
   }
 
-  mapProps(layer, props)
-  mapStyles(layer, style)
-
   if (props.adjustToFit && typeof layer.adjustToFit === 'function') {
     layer.adjustToFit()
   }
+
+  mapProps(layer, props)
+  mapStyles(layer, style)
 
   return layer
 }

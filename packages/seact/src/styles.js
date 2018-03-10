@@ -22,6 +22,8 @@ const mapStylesStrategy = {
     shape = MSShapeGroup.shapeWithPath(shape)
     layer.sketchObject.addLayer(shape)
     shape.setStyle(style)
+
+    MSLayerMovement.moveToBack([shape])
   },
 }
 
