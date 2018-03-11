@@ -36,7 +36,7 @@ export default function (context) {
           Seact.render(<group
               name="nichenqin"
               frame={{ width: 300 }}
-              style={{ backgroundColor: '#e4393c' }}
+              style={{ backgroundColor: '#fff', borderColor: '#e43', borderWidth: 3 }}
               lock
             />)
         } catch (error) {

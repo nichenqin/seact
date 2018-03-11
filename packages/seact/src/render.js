@@ -1,4 +1,5 @@
 import sketch from 'sketch/dom' // eslint-disable-line
+import { initFrame } from './frame'
 import { mapProps, generateConfig } from './props'
 import { mapStyles } from './styles'
 import { getInstanceByPath } from './utils/symbols'
@@ -114,7 +115,7 @@ function mountLayer(vlayer) {
 }
 
 function mount(vlayer, parentLayer) {
-  const { type, props, style } = vlayer
+  const { type, props, frame, style } = vlayer
   const typeOfType = typeof type
 
   let layer
@@ -141,6 +142,7 @@ function mount(vlayer, parentLayer) {
     layer.adjustToFit()
   }
 
+  initFrame(layer, frame)
   mapProps(layer, props)
   mapStyles(layer, style)
 

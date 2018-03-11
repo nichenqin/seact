@@ -1,26 +1,24 @@
-import { styleProps } from './styles'
-
 export class Vlayer {
-  constructor(type, props, style) {
+  constructor(type, props, frame, style) {
     this.type = type
     this.props = props
+    this.frame = frame
     this.style = style
   }
 }
 
 export function h(type, config, ...children) {
   const props = {}
-  const style = {}
+  let frame = {}
+  let style = {}
   const childrenLength = children.length
 
   if (config !== null) {
     Object.entries(config).forEach(([propName, propValue]) => {
-      if (styleProps[propName]) {
-        style[propName] = propValue
+      if (propName === 'frame') {
+        frame = propValue
       } else if (propName === 'style') {
-        Object.entries(propValue).forEach(([styleName, styleValue]) => {
-          style[styleName] = styleValue
-        })
+        style = propValue
       } else {
         props[propName] = propValue
       }
@@ -42,5 +40,5 @@ export function h(type, config, ...children) {
     })
   }
 
-  return new Vlayer(type, props, style)
+  return new Vlayer(type, props, frame, style)
 }
