@@ -120,6 +120,9 @@ const mapPropsStrategy = {
       }
     }
   },
+  lock(layer, isLocked) {
+    layer.sketchObject.setIsLocked(!!isLocked)
+  },
 }
 
 export function mapProps(layer, props) {

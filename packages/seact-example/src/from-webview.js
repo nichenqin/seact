@@ -37,6 +37,7 @@ export default function (context) {
               name="nichenqin"
               frame={{ width: 300 }}
               style={{ backgroundColor: '#e4393c' }}
+              lock
             />)
         } catch (error) {
           console.log(error)
