@@ -61,7 +61,7 @@ const mountStrategy = {
   },
 }
 
-const canContainsChildren = {
+export const canContainsChildren = {
   artboard: true,
   group: true,
 }

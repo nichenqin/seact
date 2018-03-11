@@ -1,6 +1,8 @@
 import sketch from 'sketch/dom' // eslint-disable-line
 import _ from 'lodash'
 
+import { canContainsChildren } from './render'
+
 const mapStylesStrategy = {
   backgroundColor(layer, color, fill) {
     fill.color = sketch.Style.colorFromString(color)
@@ -17,6 +19,9 @@ const mapStylesStrategy = {
 }
 
 export function mapStyles(layer, style) {
+  // TODO: render style to native shape
+  if (_.isEmpty(style) || !canContainsChildren[layer.type]) return
+
   let shape
   shape = MSRectangleShape.alloc().initWithFrame(layer.frame.asCGRect())
   shape = MSShapeGroup.shapeWithPath(shape)
