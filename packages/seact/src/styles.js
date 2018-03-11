@@ -22,10 +22,9 @@ export function mapStyles(layer, style) {
   // TODO: render style to native shape
   if (_.isEmpty(style) || !canContainsChildren[layer.type.toLowerCase()]) return
 
-  const frame = layer.frame.asCGRect()
-  const shape = MSShapeGroup.alloc().initWithFrame(frame)
+  const frame = new sketch.Rectangle(0, 0, layer.frame.width, layer.frame.height).asCGRect()
   const rect = MSRectangleShape.alloc().initWithFrame(frame)
-  shape.addLayer(rect)
+  const shape = MSShapeGroup.shapeWithPath(rect)
 
   const fill = shape.style().addStylePartOfType(0)
   const border = shape.style().addStylePartOfType(1)
