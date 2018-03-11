@@ -20,7 +20,7 @@ const mapStylesStrategy = {
 
 export function mapStyles(layer, style) {
   // TODO: render style to native shape
-  if (_.isEmpty(style) || !canContainsChildren[layer.type]) return
+  if (_.isEmpty(style) || !canContainsChildren[layer.type.toLowerCase()]) return
 
   let shape
   shape = MSRectangleShape.alloc().initWithFrame(layer.frame.asCGRect())
