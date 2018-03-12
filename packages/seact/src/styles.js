@@ -28,6 +28,7 @@ export function mapStyles(layer, style) {
 
   const fill = shape.style().addStylePartOfType(0)
   const border = shape.style().addStylePartOfType(1)
+  border.color = sketch.Style.colorFromString('rgba(0, 0, 0, 0)')
 
   Object.entries(style).forEach(([styleName, styleValue]) => {
     if (typeof mapStylesStrategy[styleName] === 'function') {
