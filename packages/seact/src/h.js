@@ -19,9 +19,8 @@ export function h(type, config, ...children) {
         frame = propValue
       } else if (propName === 'style') {
         style = propValue
-      } else {
-        props[propName] = propValue
       }
+      props[propName] = propValue
     })
   }
 
