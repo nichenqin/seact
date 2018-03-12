@@ -21,10 +21,10 @@ export default function (context) {
               frame={{ width: 300 }}
               style={{ backgroundColor: '#fff', borderColor: '#e43', borderWidth: 3 }}
               adjustToFit
-              lock
             >
               <symbolinstance
                 from={{ url: '/Users/nichenqin/Desktop/button.sketch', path: 'button/normal' }}
+                fix={['top', 'left', 'right', 'bottom', 'width', 'height']}
               />
             </group>)
         } catch (error) {

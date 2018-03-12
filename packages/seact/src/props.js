@@ -123,6 +123,17 @@ const mapPropsStrategy = {
   lock(layer, isLocked) {
     layer.sketchObject.setIsLocked(!!isLocked)
   },
+  fix(layer, fixProps) {
+    if (Array.isArray(fixProps)) {
+      fixProps.forEach((prop) => {
+        layer.sketchObject[`hasFixed${_.upperFirst(prop)}`] = true
+      })
+    } else if (typeof fixProps === 'object' && fixProps !== null) {
+      Object.entries(fixProps).forEach(([prop, value]) => {
+        layer.sketchObject[`hasFixed${_.upperFirst(prop)}`] = !!value
+      })
+    }
+  },
 }
 
 export function mapProps(layer, props) {
