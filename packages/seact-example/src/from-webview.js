@@ -1,4 +1,5 @@
 import WebUI from 'sketch-module-web-view'
+import sketch from 'sketch/dom' // eslint-disable-line
 import Seact from '../../seact'
 
 export default function (context) {
@@ -14,19 +15,27 @@ export default function (context) {
     hideTitleBar: false,
     shouldKeepAround: true,
     handlers: {
-      nativeLog() {
+      nativeLog(width) {
+        console.log('render')
+        const document = sketch.getSelectedDocument()
+        const page = document.selectedPage
+        const selection = document.selectedLayers
+        const parent = selection.isEmpty ? new sketch.Group({ parent: page }) : selection.layers[0]
         try {
-          Seact.render(<group
-              name="nichenqin"
-              frame={{ width: 300 }}
-              style={{ backgroundColor: '#fff', borderColor: '#e43', borderWidth: 3 }}
-              adjustToFit
-            >
-              <symbolinstance
-                from={{ url: '/Users/nichenqin/Desktop/button.sketch', path: 'button/normal' }}
-                fix={['top', 'left', 'right', 'bottom', 'width', 'height']}
-              />
-            </group>)
+          Seact.render(
+            <symbolinstance
+              from={{
+                url: '/Users/nichenqin/Desktop/button.sketch',
+                path: 'button/primary/normal',
+              }}
+              fix={['height']}
+              frame={{ width }}
+            />,
+            parent,
+          )
+
+          parent.adjustToFit()
+          parent.selected = true
         } catch (error) {
           console.log(error)
         }
