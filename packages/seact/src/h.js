@@ -16,9 +16,9 @@ export function h(type, config, ...children) {
   if (config !== null) {
     Object.entries(config).forEach(([propName, propValue]) => {
       if (propName === 'frame') {
-        frame = propValue
+        frame = Object.assign({}, propValue)
       } else if (propName === 'style') {
-        style = propValue
+        style = Object.assign({}, propValue)
       }
       props[propName] = propValue
     })
