@@ -92,7 +92,7 @@ export function generateConfig(type, props) {
 const mapPropsStrategy = {
   systemFontSize(layer, fontSize) {
     if (!_.isNaN(Number(fontSize)) && layer.type === String(sketch.Types.Text)) {
-      layer.systemFontSize = Number(fontSize)
+      layer.sketchObject.setFontSize(Number(fontSize))
     }
   },
   data(layer, data) {
