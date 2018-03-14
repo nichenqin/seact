@@ -5,8 +5,6 @@ import { setLayerSettingForKey } from './utils/data'
 
 const { Flow } = sketch
 
-export const LAYER_KEY = '@@seact-data'
-
 const commonProps = {
   id: true,
   name: true,
@@ -97,8 +95,14 @@ const mapPropsStrategy = {
   },
   data(layer, data) {
     if (typeof Settings.setLayerSettingForKey === 'function') {
-      Settings.setLayerSettingForKey(layer, LAYER_KEY, data)
-    } else setLayerSettingForKey(layer, LAYER_KEY, data)
+      Object.entries(data).forEach(([key, value]) => {
+        Settings.setLayerSettingForKey(layer, key, value)
+      })
+    } else {
+      Object.entries(data).forEach(([key, value]) => {
+        setLayerSettingForKey(layer, key, value)
+      })
+    }
   },
   overrides(instance, overrides) {
     if (instance.type === String(sketch.Types.SymbolInstance)) {
