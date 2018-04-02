@@ -1,6 +1,6 @@
 {
   "name": "seact",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "sketch layer renderer",
   "main": "dist/index",
   "files": [
