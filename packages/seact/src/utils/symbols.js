@@ -1,7 +1,5 @@
 import sketch from 'sketch/dom' // eslint-disable-line
 
-const document = sketch.getSelectedDocument()
-
 const allSymbols = {}
 const assetLibrary = {}
 const symbolLibrary = {}
@@ -63,6 +61,7 @@ export function createSymbolMasterByPath(url, path) {
   }
 
   const foreignSymbol = MSForeignSymbol.foreignSymbolWithMaster_inLibrary(symbol, assetLibrary[url])
+  const document = sketch.getSelectedDocument()
   document.sketchObject.documentData().addForeignSymbol(foreignSymbol)
 
   const symbolMaster = foreignSymbol.symbolMaster()
