@@ -9,7 +9,7 @@ document.getElementById('width').addEventListener('change', (e) => {
   pluginCall('nativeLog', e.target.value)
 })
 
-document.getElementById('button').addEventListener('change', () => {
+document.getElementById('button').addEventListener('click', () => {
   pluginCall('nativeLog', 200)
 })
 

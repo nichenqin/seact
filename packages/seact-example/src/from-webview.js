@@ -1,6 +1,7 @@
 import WebUI from 'sketch-module-web-view'
 import sketch from 'sketch/dom' // eslint-disable-line
 import Seact from '../../seact'
+import Button from './components/Button'
 
 export default function (context) {
   /* eslint-disable-next-line */
@@ -15,29 +16,19 @@ export default function (context) {
     hideTitleBar: false,
     shouldKeepAround: true,
     handlers: {
-      nativeLog(width) {
-        console.log('render')
+      nativeLog() {
+        log('render')
         const document = sketch.getSelectedDocument()
         const page = document.selectedPage
         const selection = document.selectedLayers
-        const parent = selection.isEmpty ? new sketch.Group({ parent: page }) : selection.layers[0]
+        const parent = selection.isEmpty
+          ? new sketch.Group({ parent: page, name: 'button' })
+          : selection.layers[0]
         try {
-          Seact.render(
-            <symbolinstance
-              from={{
-                url: '/Users/nichenqin/Desktop/button.sketch',
-                path: 'button/primary/normal',
-              }}
-              fix={['height']}
-              frame={{ width }}
-            />,
-            parent,
-          )
-
-          parent.adjustToFit()
-          parent.selected = true
+          Seact.render(<Button name="button" />, parent)
         } catch (error) {
-          console.log(error)
+          log('error')
+          log(error)
         }
       },
       upload(file) {

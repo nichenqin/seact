@@ -1,33 +1,32 @@
 import Seact from 'seact'
 
-export default class Button extends Seact.Component {
-  static get defaultProps() {
-    return {
-      name: 'button',
-      text: 'Hello World',
-      flowTarget: null,
-      url: '/Users/nichenqin/Desktop/button.sketch',
-      path: 'button/normal',
-    }
+class Button extends Seact.Component {
+  componentDidMount(layer) {
+    log(layer)
   }
 
   render() {
-    const {
-      name, text, flowTarget, url, path,
-    } = this.props
+    const { url, path } = this.props
     return (
-      <group
-        data={{ text }}
-        flow={{ target: flowTarget }}
-        name={name}
-        frame={{
-          width: 300,
-          height: 100,
+      <symbolinstance
+        lock
+        fix={['height']}
+        from={{ url, path }}
+        frame={{ width: 300, height: 40 }}
+        overrides={{
+          text: 'hello world',
         }}
-      >
-        {Array.from(new Array(3), () => <text text="hello world" />)}
-        <symbolinstance from={{ url, path }} overrides={{ text }} />
-      </group>
+      />
     )
   }
 }
+
+Button.defaultProps = {
+  name: 'button',
+  text: 'Hello World',
+  flowTarget: null,
+  url: '/Users/nichenqin/Desktop/button.sketch',
+  path: 'button/primary/normal',
+}
+
+export default Button

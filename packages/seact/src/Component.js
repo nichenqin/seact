@@ -3,5 +3,8 @@ export class Component {
     this.props = props
   }
 
-  render() {} // eslint-disable-line
+  /* eslint-disable class-methods-use-this */
+  render() {}
+  componentDidMount() {}
+  /* eslint-enable class-methods-use-this */
 }

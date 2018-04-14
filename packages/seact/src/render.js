@@ -3,6 +3,7 @@ import { initFrame } from './frame'
 import { mapProps, generateConfig } from './props'
 import { mapStyles } from './styles'
 import { getInstanceByPath } from './utils/symbols'
+import { callHook, hooks } from './hooks'
 
 const document = sketch.getSelectedDocument()
 
@@ -74,6 +75,10 @@ function mountComponent(vlayer, parentLayer) {
   const renderedVlayer = typeof instance.render !== 'function' ? instance : instance.render()
 
   const layer = mount(renderedVlayer, parentLayer)
+
+  instance.$root = layer
+  callHook(instance, hooks.DID_MOUNT, layer)
+
   return layer
 }
 
