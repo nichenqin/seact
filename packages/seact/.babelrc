@@ -1,4 +1,4 @@
 {
-  "presets": [["env", { "modules": false, "targets": { "node": 6 } }], "stage-3"],
-  "plugins": [["transform-react-jsx", { "pragma": "Seact.h" }], "lodash"]
+  "presets": [["env", { "modules": false, "targets": { "node": 6 } }], "stage-0"],
+  "plugins": [["transform-react-jsx", { "pragma": "Seact.h" }], "lodash", "add-module-exports"]
 }
