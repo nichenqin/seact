@@ -1,6 +1,6 @@
 import sketch from 'sketch/dom' // eslint-disable-line
 import { initFrame } from './frame'
-import { mapProps, generateConfig } from './props'
+import { mapProps, parseConfig } from './props'
 import { mapStyles } from './styles'
 import { getInstanceByPath } from './utils/symbols'
 import { callHook, hooks } from './hooks'
@@ -10,7 +10,7 @@ const document = sketch.getSelectedDocument()
 const mountStrategy = {
   artboard(vlayer) {
     const { Artboard } = sketch
-    const config = generateConfig('artboard', vlayer.props)
+    const config = parseConfig('artboard', vlayer.props)
     const { from } = config
     if (from && from.type === String(sketch.Types.SymbolMaster)) {
       return from.toArtboard()
@@ -19,27 +19,27 @@ const mountStrategy = {
   },
   group(vlayer) {
     const { Group } = sketch
-    const config = generateConfig('group', vlayer.props)
+    const config = parseConfig('group', vlayer.props)
     return new Group(config)
   },
   text(vlayer) {
     const { Text } = sketch
-    const config = generateConfig('text', vlayer.props)
+    const config = parseConfig('text', vlayer.props)
     return new Text(config)
   },
   shape(vlayer) {
     const { Shape } = sketch
-    const config = generateConfig('shape', vlayer.props)
+    const config = parseConfig('shape', vlayer.props)
     return new Shape(config)
   },
   image(vlayer) {
     const { Image } = sketch
-    const config = generateConfig('image', vlayer.props)
+    const config = parseConfig('image', vlayer.props)
     return new Image(config)
   },
   symbolmaster(vlayer) {
     const { SymbolMaster } = sketch
-    const config = generateConfig('symbolmaster', vlayer.props)
+    const config = parseConfig('symbolmaster', vlayer.props)
     const { from } = config
     if (from && from.type === String(sketch.Types.Artboard)) {
       return SymbolMaster.fromArtboard(from)
@@ -48,7 +48,7 @@ const mountStrategy = {
   },
   symbolinstance(vlayer) {
     const { SymbolInstance } = sketch
-    const config = generateConfig('symbolinstance', vlayer.props)
+    const config = parseConfig('symbolinstance', vlayer.props)
 
     const { from } = config
 

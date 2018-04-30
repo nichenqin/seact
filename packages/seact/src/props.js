@@ -70,7 +70,7 @@ const specialProps = {
   },
 }
 
-export function generateConfig(type, props) {
+export function parseConfig(type, props) {
   const config = {}
   const availables = availableProps[type]
 
