@@ -32,6 +32,7 @@
   ],
   "dependencies": {
     "@skpm/dialog": "^0.2.0",
+    "@skpm/path": "^0.1.0",
     "seact": "^0.1.2",
     "sketch-module-web-view": "^0.2.0"
   }

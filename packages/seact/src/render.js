@@ -60,6 +60,23 @@ const mountStrategy = {
 
     return new SymbolInstance(config)
   },
+  pdf(vlayer) {
+    const config = parseConfig('pdf', vlayer.props)
+    const { from } = config
+
+    let url
+    if (typeof from === 'string') {
+      url = from
+    } else if (typeof from === 'object' && typeof from.url === 'string') {
+      // eslint-disable-next-line prefer-destructuring
+      url = from.url
+    }
+
+    const importer = MSPDFImporter.pdfImporter()
+    const nsURL = NSURL.fileURLWithPath(url)
+    importer.prepareToImportFromURL(nsURL)
+    return sketch.fromNative(importer.importAsLayer())
+  },
 }
 
 export const canContainsChildren = {

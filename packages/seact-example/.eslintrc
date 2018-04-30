@@ -11,6 +11,7 @@
     "no-console": 0
   },
   "globals": {
-    "log": true
+    "log": true,
+    "MSPDFImporter": true
   }
 }

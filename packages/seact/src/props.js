@@ -45,6 +45,10 @@ const availableProps = {
     flow: true,
     from: true,
   },
+  pdf: {
+    ...commonProps,
+    from: true,
+  },
 }
 
 const specialProps = {

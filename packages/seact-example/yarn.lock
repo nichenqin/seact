@@ -46,6 +46,10 @@
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
+"@skpm/path@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@skpm/path/-/path-0.1.0.tgz#ae853e0641834de84cbdc03a89c55a6a1f76c7c4"
+
 "@skpm/sketch-debugger@^0.5.0":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@skpm/sketch-debugger/-/sketch-debugger-0.5.1.tgz#309fe90c6d263b0e73bb7f4724ab97762958714e"

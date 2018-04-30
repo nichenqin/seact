@@ -30,6 +30,7 @@
     "eslint-plugin-import": "^2.9.0"
   },
   "dependencies": {
+    "@skpm/path": "^0.1.0",
     "lodash": "^4.17.5"
   }
 }

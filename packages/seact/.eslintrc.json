@@ -15,6 +15,7 @@
     "MSRectangleShape": true,
     "MSShapeGroup": true,
     "MSLayerMovement": true,
+    "MSPDFImporter": true,
     "__command": true
   }
 }

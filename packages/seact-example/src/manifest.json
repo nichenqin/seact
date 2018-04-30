@@ -12,10 +12,20 @@
       "handler": "uploadImage",
       "identifier": "seact-example-upload-image",
       "script": "./upload-image.js"
+    },
+    {
+      "name": "import-pdf",
+      "handler": "importPdf",
+      "identifier": "seact-example-import-pdf",
+      "script": "./import-pdf.js"
     }
   ],
   "menu": {
     "title": "seact-example",
-    "items": ["seact-example-from-webview", "seact-example-upload-image"]
+    "items": [
+      "seact-example-from-webview",
+      "seact-example-upload-image",
+      "seact-example-import-pdf"
+    ]
   }
 }
