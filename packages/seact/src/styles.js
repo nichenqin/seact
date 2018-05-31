@@ -17,7 +17,7 @@ const mapStylesStrategy = {
     }
   },
   shadowColor(layer, color, shadow) {
-    shadow.shadowColor = sketch.Style.colorFromString(color)
+    shadow.setColor(sketch.Style.colorFromString(color))
   },
   shadowX(layer, offsetX, shadow) {
     offsetX = parseInt(offsetX, 10)
