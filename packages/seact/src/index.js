@@ -5,6 +5,7 @@ import { getInstanceByPath } from './utils/symbols'
 
 const Seact = {
   h,
+  createElement: h,
   render,
   Component,
   getInstanceByPath,
