@@ -17,7 +17,7 @@ const mapStylesStrategy = {
     }
   },
   borderRadius(layer, radius, __, shape) {
-    shape.setCornerRadiusFromComponents(`${radius};${radius};${radius};${radius}`)
+    shape.layers()[0].setCornerRadiusFromComponents(`${radius};${radius};${radius};${radius}`)
   },
   shadowColor(layer, color, shadow) {
     shadow.setColor(sketch.Style.colorFromString(color))
