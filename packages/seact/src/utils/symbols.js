@@ -6,8 +6,8 @@ const symbolLibrary = {}
 const instanceLibrary = {}
 const masterLibrary = {}
 
-export function getSymbolsFromLibrary(document, url) {
-  if (!assetLibrary[document.id + url]) {
+export function getSymbolsFromLibrary(document, url, timestamp) {
+  if (!assetLibrary[document.id + url + timestamp]) {
     if (!url) {
       throw new Error('url required')
     }
@@ -20,16 +20,17 @@ export function getSymbolsFromLibrary(document, url) {
     }
 
     library.loadSynchronously()
-    assetLibrary[document.id + url] = library
+    assetLibrary[document.id + url + timestamp] = library
   }
 
-  const symbols = assetLibrary[document.id + url].document().allSymbols()
-  allSymbols[document.id + url] = symbols
+  const symbols = assetLibrary[document.id + url + timestamp].document().allSymbols()
+  allSymbols[document.id + url + timestamp] = symbols
   return symbols
 }
 
-export function getSymboFromLibrarylByPath(document, url, path) {
-  const symbols = allSymbols[document.id + url] || getSymbolsFromLibrary(document, url)
+export function getSymboFromLibrarylByPath(document, url, path, timestamp) {
+  const symbols =
+    allSymbols[document.id + url + timestamp] || getSymbolsFromLibrary(document, url, timestamp)
   if (!symbols.count()) {
     throw new Error('Tried to open library but no symbol found inside the file')
   }
@@ -45,50 +46,53 @@ export function getSymboFromLibrarylByPath(document, url, path) {
   }
 
   if (symbol) {
-    symbolLibrary[document.id + url + path] = symbol
+    symbolLibrary[document.id + url + path + timestamp] = symbol
   }
   return symbol
 }
 
-export function createSymbolMasterByPath(document, url, path) {
+export function createSymbolMasterByPath(document, url, path, timestamp) {
   if (!path) {
     throw new Error('path required')
   }
 
   const symbol =
-    symbolLibrary[document.id + url + path] || getSymboFromLibrarylByPath(document, url, path)
+    symbolLibrary[document.id + url + path + timestamp] ||
+    getSymboFromLibrarylByPath(document, url, path, timestamp)
   if (!symbol) {
     throw new Error(`symbol not found in path: ${path}`)
   }
 
   const foreignSymbol = MSForeignSymbol.foreignSymbolWithMaster_inLibrary(
     symbol,
-    assetLibrary[document.id + url],
+    assetLibrary[document.id + url + timestamp],
   )
   document.sketchObject.documentData().addForeignSymbol(foreignSymbol)
 
   const symbolMaster = foreignSymbol.symbolMaster()
-  masterLibrary[document.id + url + path] = symbolMaster
+  masterLibrary[document.id + url + path + timestamp] = symbolMaster
 
   return symbolMaster
 }
 
-export function createSymbolInstanceByPath(document, url, path) {
+export function createSymbolInstanceByPath(document, url, path, timestamp) {
   const symbolMaster =
-    masterLibrary[document.id + url + path] || createSymbolMasterByPath(document, url, path)
+    masterLibrary[document.id + url + path + timestamp] ||
+    createSymbolMasterByPath(document, url, path, timestamp)
 
   const instance = symbolMaster.newSymbolInstance()
 
   if (instance) {
-    instanceLibrary[document.id + url + path] = instance
+    instanceLibrary[document.id + url + path + timestamp] = instance
   }
 
   return instance
 }
 
-export function getInstanceByPath(url, path) {
+export function getInstanceByPath(url, path, timestamp = '') {
   const document = sketch.getSelectedDocument()
   const instance =
-    instanceLibrary[document.id + url + path] || createSymbolInstanceByPath(document, url, path)
+    instanceLibrary[document.id + url + path + timestamp] ||
+    createSymbolInstanceByPath(document, url, path, timestamp)
   return sketch.fromNative(instance.copy())
 }
