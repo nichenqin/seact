@@ -54,7 +54,7 @@ const mountStrategy = {
 
     if (from) {
       if (typeof from.url === 'string' && typeof from.path === 'string') {
-        return getInstanceByPath(from.url, from.path)
+        return getInstanceByPath(from.url, from.path, from.timestamp)
       }
     }
 
