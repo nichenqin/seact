@@ -16,6 +16,9 @@ const mapStylesStrategy = {
       border.thickness = width
     }
   },
+  borderRadius(layer, radius) {
+    layer.sketchObject.setCornerRadiusFromComponents(`${radius};${radius};${radius};${radius}`)
+  },
   shadowColor(layer, color, shadow) {
     shadow.setColor(sketch.Style.colorFromString(color))
   },
@@ -71,6 +74,9 @@ export function mapStyles(layer, style) {
         shapeStyle = shadow
       }
       mapStylesStrategy[styleName](layer, styleValue, shapeStyle)
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(`unknown property ${style}`)
     }
   })
 
