@@ -2,7 +2,6 @@ import sketch from 'sketch/dom' // eslint-disable-line
 import _ from 'lodash'
 
 import { canContainsChildren } from './render'
-import { createShape } from './utils'
 
 const mapStylesStrategy = {
   backgroundColor(layer, color, fill) {
@@ -56,9 +55,8 @@ export function mapStyles(layer, style) {
   // TODO: render style to native shape
   if (_.isEmpty(style) || !canContainsChildren[layer.type.toLowerCase()]) return
 
-  const frame = new sketch.Rectangle(0, 0, layer.frame.width, layer.frame.height).asCGRect()
-  const rect = MSRectangleShape.alloc().initWithFrame(frame)
-  const shape = createShape(rect)
+  const frame = new sketch.Rectangle(0, 0, layer.frame.width, layer.frame.height)
+  const shape = new sketch.Shape({ frame }).sketchObject
 
   const fill = shape.style().addStylePartOfType(0)
   fill.color = sketch.Style.colorFromString('rgba(0, 0, 0, 0)')
