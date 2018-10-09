@@ -1,6 +1,6 @@
 {
   "name": "seact-example",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "engines": {
     "sketch": ">=3.0"
   },
@@ -32,7 +32,7 @@
   ],
   "dependencies": {
     "@skpm/dialog": "^0.2.0",
-    "seact": "^0.1.16",
+    "seact": "^0.1.17",
     "sketch-module-web-view": "^0.2.0"
   }
 }
